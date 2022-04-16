@@ -132,7 +132,7 @@ sum(10, 20, 30);
     호출 당시 넘겨 받은 인자들이 들어가 있음
 */
 
-// 전달받은 인자를 arguments로 처리하기 때문에
+// 전달받은 인자를 arguments로 처리하기 때문git m에
 // 인자를 기술할 필요 없음
 function sum(){
     let total = 0;
