@@ -168,7 +168,23 @@ function sum(...args){
 
 
 
-/**/
+/*
+call, aplly
+
+공통점: 첫 번째 인자로 context 객체를 받는다.
+차이점
+call: 인자를 일반 함수를 호출할 때 사용하는 방식 그대로 전달
+apply는 인자를 배열에 담아서 전달해야한다.
+
+*/
+
+sum.call(null, 10, 20, 30);
+sum.apply(null, [10, 20, 30]);
+
+const arr = [10, 20, 30];
+sum.apply(null, arr);
+
+
 /**/
 /**/
 /**/
