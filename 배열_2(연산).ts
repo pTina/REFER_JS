@@ -107,6 +107,16 @@ console.log(shakespeareTwoBooks);
 // 다른 작가의 책을 기술할 때도 넘겨주는 값만 변경하면 되기 때문에
 // 코드의 가독성, 표현력, 재활용성이 높아짐
 
+// 3. 필터링 - filter 메소드
+// 인자로 함수를 받는다.
+// 그 함수한테 데이터를 순회하면서 하나씩 넘겨주고 그 함수가 리턴한 값이 참인 데이터만 모아서 배열로 반환함
+// 입력으로 들어간 값과 출력으로 나온 값의 갯수가 다를 수 있다.
+const henry: Book[] = shakespeareTwoBooks.filter((book: Book) =>{
+    // '헨리' 문자열이 포함되어 있냐?
+    // true: 그 값 반환, 그렇지 않으면 false 반환
+    book.title.includes('헨리')
+});
 
-
-
+console.log(henry);
+// 단순하지만 꽤 유용하게 많이 쓰임
+// map과 filter 연결해서 많이 쓴다.
