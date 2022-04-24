@@ -55,5 +55,58 @@ books.forEach((book: string, idx: number) => {
 
 // 어느 정도 크기의 배열 데이터를 다루느냐에 따라 어떤걸 쓸 것인지 결정하면 된다.
 
+// 2-1. map
+// 원본 배열에서 데이터를 입력 받아 함수가 리턴한 데이터로 새로운 배열을 만들어서 반환하는 함수
+// 인자로 함수를 받음
+// map 함수가 전달 주는 데이터도 배열을 순회하며 원소를 하나하나 던져줌
+// 1. 원소, 2: index, 3: 원본 배열
+// 전달된 함수가 리턴한 값을 모아서 하나의 함수로 만든 다음에 순회가 끝나면 반환해줌
+const bookObjects: Book[] = books.map((book: string) => {
+    return {
+        title: book,
+        author: undefined
+    };
+})
+// 입력으로 받은 데이터를 함수를 통해 변경한 다음
+// 변경된 모양으로 새로운 배열을 만듬
 
- 
+// 배열 안에 있는 데이터를 다른 형태로 변환하는 용도로 많이 사용됨
+
+// 2-2. map & map (메소드 체이닝)
+// 연결하는 이유? 중간 과정의 배열은 필요가 없기 때문에
+const ShakespearOneBooks: Book[] = books
+    // 애로우 함수: 첫 번째 데이터를 그대로 리턴하는 경우 리턴문을 생략할 수 있음
+    // => 괄호()로 값을 리턴하도록 함
+    .map((book: string) => ({
+        title: book
+    }))
+    .map((book: Book) => ({
+        ...book,
+        author: "William Shakespeare"
+    }));
+
+console.log(ShakespearOneBooks);
+
+const booktitleToBookObject = (book: string) => ({ title: book});
+// 첫 번째 함수의 반환값: 함수
+// 두 번째 함수의 반환값: 객체
+// => "커링"
+const makeAuthor = (name: string) => (book: Book) => ({
+    ...book,
+    author: name
+});
+
+const shakespeareTwoBooks: Book[] = books
+    .map(booktitleToBookObject)
+    .map(makeAuthor("William Shapkespaere"));
+
+console.log(shakespeareTwoBooks);
+// => map 함수에 전달된 함수를 바깥쪽으로 뽑아냄
+//  title로 변환하는 또 다른 map 연산이 있다면
+//  재활용 할 수 있음
+// 다른 작가의 책을 기술할 때도 넘겨주는 값만 변경하면 되기 때문에
+// 코드의 가독성, 표현력, 재활용성이 높아짐
+
+
+
+
