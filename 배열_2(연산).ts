@@ -120,3 +120,45 @@ const henry: Book[] = shakespeareTwoBooks.filter((book: Book) =>{
 console.log(henry);
 // 단순하지만 꽤 유용하게 많이 쓰임
 // map과 filter 연결해서 많이 쓴다.
+
+// 4. 누적함수 reduce
+
+const someNumbers: number[] = [10, 5, 3, 14, 56];
+
+// reduce는 인자로 함수를 받는다.
+// 항상 인자가 2개씩 넘어온다.
+// 주어진 함수가 리턴한 값을 모아서 최종적으로 리턴한 값을 리턴한다.
+// 두번째 인자값(0)은 a의 초기값으로 넘겨줌
+// b에는 첫 배열의 첫 번째 값을 넘겨줌 => 10
+// 0 + 10 = 10
+// 다음번 순회할 때 10을 a에게 넘겨주고, 배열의 두 번째 값인 5가 b에 들어감
+// 10 + 5 = 15;
+// 이러한 과정을 배열이 끝날 때까지 반복
+// => 베열에 있는 모든 값의 합을 구할 수 있음
+const sumNumbers = someNumbers.reduce((a:number, b:number) => a+b ,0);
+console.log(sumNumbers);
+
+// - 응용
+// 여러개의 객체를 하나의 객체로 합치기
+type SomeObject = {
+    [key: string]:  string | number;
+}
+
+const someObjects: SomeObject[] = [
+    { border: "none"},
+    { fontSize: 24},
+    { className: "box sm-bix"}
+];
+
+const someObject: SomeObject = someObjects.reduce(
+    // a를 펼쳐서 객체 안에 넣고, b를 펼쳐서 객체 안에 넣고
+    (a:SomeObject, b: SomeObject) => ({ ...a, ...b}),
+    {}
+);
+
+console.log(someObject); // 하나의 객체로 만들어진 결과를 확인할 수 있음
+// 숫자, 객체 등을 모두 합산 가능
+// reduce는 동작하게끔 돌아가는 구조만 제공하는 역할
+
+
+
