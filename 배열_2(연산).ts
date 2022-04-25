@@ -159,6 +159,32 @@ const someObject: SomeObject = someObjects.reduce(
 console.log(someObject); // 하나의 객체로 만들어진 결과를 확인할 수 있음
 // 숫자, 객체 등을 모두 합산 가능
 // reduce는 동작하게끔 돌아가는 구조만 제공하는 역할
+ 
+// 5. 유사 배열
+// 배열이지만 데이터를 여러 개 갖고 있고, 순서를 갖고 있고, 몇 개가 들어있는지 알 수 있는 형태
+// 배열과 같은 형태를 가지고 있지만 배열이 갖고 있는 도구들은 메소드로서 갖고있지 않다.
+// 가볍게 만드려고 만든 구조
+function sumNumbers2() : number{
+    // arguments: 가변 인자를 처리하는 배열
+    // arguments를 순회하면서 합산하는 중
+    // arguments는 진짜 배열이 아닌 유사 배열이기 때문에 단독으로
+    // arguments.reduce() 하게 되면 동작하지 않는다.
+    // 유사 배열을 가지고 베열 연산을 하고 싶을 때
+    // 유사 배열을 배열로 바꾸어야 함
+    // => Array.from(arguments)
+    return Array.from(arguments).reduce((a:number, b:number) => a+b, 0);
+}
 
+console.log(sumNumbers2(10, 20, 30, 40, 50));
+
+// sumNumbers2()와 똑같은 일을 하는 함수
+// arguments를 사용하지 않고 
+// 전개 파라미터를 사용한 것
+// => 명확히 타입이 기술되었으므로 사용하는 쪽에서도 문제가 발생하지 않는다.
+function sumNumbersForTypeScript(...args: number[]): number{
+    return args.reduce((a:number, b:number) => a+b, 0);
+}
+
+console.log(sumNumbersForTypeScript(10, 20, 30, 40, 50));
 
 
