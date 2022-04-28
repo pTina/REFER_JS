@@ -78,3 +78,4 @@ console.log(f.name);
 // this.__proto__ = Foo.prototype 이렇게 연결시키게 됨
 // 그래서 똑같은 메카니즘으로 속성을 찾을 때 찾을 수 있게됨
 console.log(f.lastName);
+
